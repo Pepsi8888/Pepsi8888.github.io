@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEN-X WORKSHOP AI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-green: #0a4429;
+            --light-green: #e2efda;
+            --accent-yellow: #ffc000;
+            --accent-orange: #ed7d31;
+            --bg-cream: #fffdf0;
+            --text-dark: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Anuphan', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .poster-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--bg-cream);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Section 1: Header */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .header-title-block {
+            flex: 1;
+        }
+
+        .gen-x-badge {
+            background-color: var(--accent-yellow);
+            color: var(--primary-green);
+            font-size: 3.5rem;
+            font-weight: 800;
+            padding: 5px 20px;
+            display: inline-block;
+            border-radius: 8px;
+            transform: rotate(-2deg);
+            box-shadow: 2px 4px 0px rgba(0,0,0,0.1);
+        }
+
+        .header-subtitle {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-top: 10px;
+        }
+
+        .header-desc {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1d4ed8; /* Blue text */
+            margin-top: 5px;
+        }
+
+        .illustration-placeholder {
+            width: 160px;
+            height: 140px;
+            background-color: #ddd;
+            border-radius: 10px;
+            display: flex;
+            justify-center: center;
+            align-items: center;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #666;
+            border: 2px dashed #999;
+        }
+
+        /* Section 2: Two Columns (Problem vs Solution) */
+        .grid-two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .card-problem {
+            background-color: #fff2cc;
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid #ffe699;
+        }
+
+        .card-problem p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .card-problem .highlight-red {
+            color: #c00000;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .card-solution {
+            background-color: var(--primary-green);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-solution::before {
+            content: "💡";
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card-solution .sol-header {
+            font-size: 1.1rem;
+            margin-left: 25px;
+            margin-bottom: 5px;
+        }
+
+        .card-solution .sol-title {
+            color: var(--accent-yellow);
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .card-solution .sol-desc {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Section 3: Assurance Badge */
+        .assurance-badge {
+            background-color: var(--light-green);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .assurance-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .assurance-text border-blue {
+            color: #1d4ed8;
+        }
+
+        /* Section 4: Date & Time */
+        .schedule-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .calendar-icon-mock {
+            background-color: #f8d7da;
+            border-top: 10px solid #dc3545;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .schedule-details {
+            flex: 1;
+        }
+
+        .schedule-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #dc3545;
+        }
+
+        .schedule-date {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #dc3545;
+            line-height: 1;
+            margin: 5px 0;
+        }
+
+        .schedule-time {
+            background-color: #111827;
+            color: white;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Section 5: Location & Contact */
+        .location-card {
+            background-color: var(--primary-green);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .location-info {
+            flex: 1;
+        }
+
+        .location-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            margin-bottom: 5px;
+        }
+
+        .location-sub {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .location-address {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .contact-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(255,255,255,0.2);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+        }
+
+        .map-placeholder {
+            width: 140px;
+            background-color: #e5e7eb;
+            border-radius: 10px;
+            border: 3px solid rgba(255,255,255,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Section 6: Footer */
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            line-height: 1.4;
+        }
+
+        .footer-badge {
+            background-color: #111827;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            transform: rotate(2deg);
+        }
+
+        .footer-badge span {
+            color: var(--accent-yellow);
+        }
+    </style>
+</head>
+<body>
+
+<div class="poster-container">
+
+    <div class="header-section">
+        <div class="header-title-block">
+            <div class="gen-x-badge">GEN-X</div>
+            <div class="header-subtitle">อย่างพวกเรา</div>
+            <div class="header-desc">ไม่ค่อยถนัดเรื่อง AI</div>
+        </div>
+        <div class="illustration-placeholder">
+            [ รูปภาพตัวละคร Gen-X ]
+        </div>
+    </div>
+
+    <div class="grid-two-columns">
+        <div class="card-problem">
+            <p>ถ้าปล่อยไว้แบบนี้ ต่อไปเราอาจคุยกับ เพื่อนรุ่นใหม่/เด็กรุ่นใหม่ <span class="highlight-red">ไม่รู้เรื่อง!</span></p>
+        </div>
+        <div class="card-solution">
+            <div class="sol-header">เรามาช่วยกันจัด</div>
+            <div class="sol-title">WORKSHOP</div>
+            <div class="sol-desc">ให้ความรู้ AI กับเพื่อนๆ เรา</div>
+        </div>
+    </div>
+
+    <div class="assurance-badge">
+        <span style="font-size: 1.5rem;">👍</span>
+        <div class="assurance-text">
+            ตรูเชื่อว่า <strong>ทุกคนจะเข้าใจ</strong> และใช้ <strong style="color: #1d4ed8;">AI</strong> อย่าง<strong>สนุกสนาน</strong> แน่นอน 😊
+        </div>
+    </div>
+
+    <div class="schedule-section">
+        <div class="calendar-icon-mock">📅</div>
+        <div class="schedule-details">
+            <div class="schedule-title">วันเสาร์นี้แล้ว!</div>
+            <div class="schedule-date">23/5/69</div>
+            <div class="schedule-time">11.00-17.00 น.</div>
+        </div>
+        <div class="illustration-placeholder" style="width: 180px; height: 100px;">
+            [ รูปภาพเรียนรู้ AI ]
+        </div>
+    </div>
+
+    <div class="location-card">
+        <div class="location-info">
+            <div class="location-title">ชมรมนักเรียนเก่าเทพศิรินทร์</div>
+            <div class="location-sub">(บ้านเสี่ยเตี้ยว)</div>
+            <div class="location-address">
+                509 พุทธบูชา 44 แยก 11
+            </div>
+            <a href="tel:0635394108" class="contact-phone">
+                📞 0635394108
+            </a>
+        </div>
+        <div class="map-placeholder">
+            📍 พุทธบูชา 44<br>แยก 11
+        </div>
+    </div>
+
+    <div class="footer-section">
+        <div class="footer-text">
+            มาเรียนรู้ AI ไปด้วยกัน<br>
+            เพื่อไม่ให้เราตกยุค และสนุกกับเทคโนโลยี! ♡
+        </div>
+        <div class="footer-badge">
+            GEN-X<br>
+            ก็เก่ง <span>AI</span> ได้นะ!
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
